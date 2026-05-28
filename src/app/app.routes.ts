@@ -1,11 +1,19 @@
 import { Routes } from '@angular/router';
 
-import { Inicio } from './pages/inicio/inicio';
-import { Tareas } from './pages/tareas/tareas';
-import { NuevaTarea } from './pages/nueva-tarea/nueva-tarea';
-
 export const routes: Routes = [
-  { path: '', component: Inicio },
-  { path: 'tareas', component: Tareas },
-  { path: 'nueva-tarea', component: NuevaTarea }
+  {
+    path: '',
+    loadComponent: () =>
+      import('./pages/inicio/inicio').then(m => m.Inicio)
+  },
+  {
+    path: 'tareas',
+    loadComponent: () =>
+      import('./pages/tareas/tareas').then(m => m.Tareas)
+  },
+  {
+    path: 'nueva-tarea',
+    loadComponent: () =>
+      import('./pages/nueva-tarea/nueva-tarea').then(m => m.NuevaTarea)
+  }
 ];
