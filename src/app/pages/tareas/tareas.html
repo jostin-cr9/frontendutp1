@@ -1,73 +1,65 @@
-<h2>Lista de Tareas</h2>
 <div class="container mt-4">
 
-  <h2 class="mb-3">📚 Mis Tareas</h2>
+  <h2 class="mb-3">📚 Lista de Tareas</h2>
 
+  <!-- MENSAJE -->
   <p *ngIf="mensaje" class="alert alert-success">
     {{ mensaje }}
   </p>
 
-  <div class="row">
+  <!-- TABLA -->
+  <table class="table table-bordered table-hover">
 
-    <div class="col-md-4 mb-3" *ngFor="let t of tareas">
+    <thead class="table-dark">
+      <tr>
+        <th>Título</th>
+        <th>Curso</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Prioridad</th>
+        <th>Alertas</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
 
-      <div class="card shadow">
+    <tbody>
 
-        <div class="card-body">
+      <tr *ngFor="let t of tareas">
 
-          <h5 class="card-title">{{ t.titulo }}</h5>
+        <td>{{ t.titulo }}</td>
+        <td>{{ t.curso }}</td>
+        <td>{{ t.fechaEntrega | date:'shortDate' }}</td>
+        <td>{{ t.estado }}</td>
+        <td>{{ t.prioridad }}</td>
 
-          <p>
-            📘 {{ t.curso }} <br>
-            📅 {{ t.fechaEntrega | date:'shortDate' }} <br>
-            📌 {{ t.estado }} <br>
-            ⚡ {{ t.prioridad }}
-          </p>
+        <!-- ALERTAS -->
+        <td>
 
-          <!-- ALERTA URGENTE -->
-          <div *ngIf="t.prioridad === 'alta'" class="alert alert-danger p-1">
+          <!-- URGENTE -->
+          <span *ngIf="t.prioridad === 'alta'" class="badge bg-danger">
             ⚠ Urgente
-          </div>
+          </span>
 
-          <!-- ALERTA VENCIDA -->
-          <div *ngIf="t.estado !== 'completado' && new Date(t.fechaEntrega) < hoy"
-               class="alert alert-warning p-1">
+          <!-- VENCIDA -->
+          <span *ngIf="t.estado !== 'completado' && esVencida(t.fechaEntrega)"
+                class="badge bg-warning text-dark">
             ⛔ Vencida
-          </div>
+          </span>
 
+        </td>
+
+        <!-- ACCIONES -->
+        <td>
           <button class="btn btn-danger btn-sm"
                   (click)="eliminar(t.id!)">
             Eliminar
           </button>
+        </td>
 
-        </div>
-      </div>
+      </tr>
 
-    </div>
-  </div>
+    </tbody>
+
+  </table>
+
 </div>
-<p *ngIf="mensaje" style="color: green">{{ mensaje }}</p>
-
-<table border="1" width="100%">
-  <tr>
-    <th>Título</th>
-    <th>Curso</th>
-    <th>Fecha</th>
-    <th>Estado</th>
-    <th>Prioridad</th>
-    <th>Acciones</th>
-  </tr>
-
-  <tr *ngFor="let t of tareas">
-    <td>{{ t.titulo }}</td>
-    <td>{{ t.curso }}</td>
-    <td>{{ t.fechaEntrega | date:'shortDate' }}</td>
-    <td>{{ t.estado }}</td>
-    <td>{{ t.prioridad }}</td>
-
-    <td>
-      <button (click)="eliminar(t.id!)">Eliminar</button>
-    </td>
-  </tr>
-  
-</table>
