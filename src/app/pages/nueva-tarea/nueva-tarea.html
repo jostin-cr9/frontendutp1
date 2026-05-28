@@ -1,0 +1,131 @@
+```html
+<div class="container mt-4">
+
+  <div class="card shadow p-4">
+
+    <h2 class="text-center mb-4 text-primary">
+      ➕ Registrar Nueva Tarea
+    </h2>
+
+    <form (ngSubmit)="guardar()">
+
+      <!-- TITULO -->
+      <div class="mb-3">
+        <label class="form-label">
+          Título
+        </label>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese el título"
+          [(ngModel)]="tarea.titulo"
+          name="titulo"
+          required>
+      </div>
+
+      <!-- CURSO -->
+      <div class="mb-3">
+        <label class="form-label">
+          Curso
+        </label>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese el curso"
+          [(ngModel)]="tarea.curso"
+          name="curso"
+          required>
+      </div>
+
+      <!-- FECHA -->
+      <div class="mb-3">
+        <label class="form-label">
+          Fecha de Entrega
+        </label>
+
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="tarea.fechaEntrega"
+          name="fechaEntrega"
+          required>
+      </div>
+
+      <!-- ESTADO -->
+      <div class="mb-3">
+        <label class="form-label">
+          Estado
+        </label>
+
+        <select
+          class="form-select"
+          [(ngModel)]="tarea.estado"
+          name="estado">
+
+          <option value="pendiente">
+            Pendiente
+          </option>
+
+          <option value="en progreso">
+            En Progreso
+          </option>
+
+          <option value="completado">
+            Completado
+          </option>
+
+        </select>
+      </div>
+
+      <!-- PRIORIDAD -->
+      <div class="mb-3">
+        <label class="form-label">
+          Prioridad
+        </label>
+
+        <select
+          class="form-select"
+          [(ngModel)]="tarea.prioridad"
+          name="prioridad">
+
+          <option value="baja">
+            Baja
+          </option>
+
+          <option value="media">
+            Media
+          </option>
+
+          <option value="alta">
+            Alta
+          </option>
+
+        </select>
+      </div>
+
+      <!-- BOTON -->
+      <button
+        type="submit"
+        class="btn btn-primary w-100">
+
+        💾 Guardar Tarea
+
+      </button>
+
+    </form>
+
+    <!-- MENSAJE -->
+    <div
+      *ngIf="mensaje"
+      class="alert alert-success mt-3">
+
+      {{ mensaje }}
+
+    </div>
+
+  </div>
+
+</div>
+```

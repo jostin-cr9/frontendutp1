@@ -14,6 +14,6 @@ export const routes: Routes = [
   {
     path: 'nueva-tarea',
     loadComponent: () =>
-      import('./pages/nuevatarea/nueva-tarea').then(m => m.NuevaTarea)
+      import('./pages/nueva-tarea/nueva-tarea').then(m => m.NuevaTarea)
   }
 ];
