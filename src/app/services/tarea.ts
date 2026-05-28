@@ -1,8 +1,12 @@
-import { Injectable } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class Tarea {
-  
-}
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideHttpClient()
+  ]
+};

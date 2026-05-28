@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './tareas.html',
   styleUrl: './tareas.css',
 })
+
 export class Tareas {
 
 }
