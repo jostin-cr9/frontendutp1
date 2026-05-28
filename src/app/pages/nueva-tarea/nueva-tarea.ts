@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TareaService } from '../../services/tarea.service';
 import { Tarea } from '../../models/tarea';
-
 @Component({
   selector: 'app-nueva-tarea',
   standalone: true,
@@ -18,11 +17,8 @@ export class NuevaTarea {
     estado: 'pendiente',
     prioridad: 'media'
   };
-
   mensaje = '';
-
   constructor(private service: TareaService) {}
-
   guardar() {
     this.service.registrar(this.tarea).subscribe({
       next: () => {

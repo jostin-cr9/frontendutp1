@@ -46,7 +46,6 @@ listar() {
     });
   }
 
-  // ✅ ESTA ES LA QUE TE FALTA
   esVencida(fecha: string): boolean {
     return new Date(fecha) < this.hoy;
   }
