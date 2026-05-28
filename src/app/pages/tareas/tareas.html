@@ -1,5 +1,51 @@
 <h2>Lista de Tareas</h2>
+<div class="container mt-4">
 
+  <h2 class="mb-3">📚 Mis Tareas</h2>
+
+  <p *ngIf="mensaje" class="alert alert-success">
+    {{ mensaje }}
+  </p>
+
+  <div class="row">
+
+    <div class="col-md-4 mb-3" *ngFor="let t of tareas">
+
+      <div class="card shadow">
+
+        <div class="card-body">
+
+          <h5 class="card-title">{{ t.titulo }}</h5>
+
+          <p>
+            📘 {{ t.curso }} <br>
+            📅 {{ t.fechaEntrega | date:'shortDate' }} <br>
+            📌 {{ t.estado }} <br>
+            ⚡ {{ t.prioridad }}
+          </p>
+
+          <!-- ALERTA URGENTE -->
+          <div *ngIf="t.prioridad === 'alta'" class="alert alert-danger p-1">
+            ⚠ Urgente
+          </div>
+
+          <!-- ALERTA VENCIDA -->
+          <div *ngIf="t.estado !== 'completado' && new Date(t.fechaEntrega) < hoy"
+               class="alert alert-warning p-1">
+            ⛔ Vencida
+          </div>
+
+          <button class="btn btn-danger btn-sm"
+                  (click)="eliminar(t.id!)">
+            Eliminar
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 <p *ngIf="mensaje" style="color: green">{{ mensaje }}</p>
 
 <table border="1" width="100%">
@@ -23,4 +69,5 @@
       <button (click)="eliminar(t.id!)">Eliminar</button>
     </td>
   </tr>
+  
 </table>

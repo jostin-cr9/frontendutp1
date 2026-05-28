@@ -1,13 +1,43 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { TareaService } from '../../services/tarea.service';
+import { Tarea } from '../../models/tarea';
 
 @Component({
   selector: 'app-nueva-tarea',
-     standalone: true,
-  imports: [RouterLink],
-  templateUrl: './nueva-tarea.html',
-  styleUrl: './nueva-tarea.css',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './nueva-tarea.html'
 })
 export class NuevaTarea {
 
+  tarea: Tarea = {
+    titulo: '',
+    curso: '',
+    fechaEntrega: '',
+    estado: 'pendiente',
+    prioridad: 'media'
+  };
+
+  mensaje = '';
+
+  constructor(private service: TareaService) {}
+
+  guardar() {
+    this.service.registrar(this.tarea).subscribe({
+      next: () => {
+        this.mensaje = 'Tarea registrada correctamente';
+        this.tarea = {
+          titulo: '',
+          curso: '',
+          fechaEntrega: '',
+          estado: 'pendiente',
+          prioridad: 'media'
+        };
+      },
+      error: () => {
+        this.mensaje = 'Error al registrar tarea';
+      }
+    });
+  }
 }
