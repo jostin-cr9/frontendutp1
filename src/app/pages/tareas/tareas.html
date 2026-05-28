@@ -1,1 +1,26 @@
-<p>tareas works!</p>
+<h2>Lista de Tareas</h2>
+
+<p *ngIf="mensaje" style="color: green">{{ mensaje }}</p>
+
+<table border="1" width="100%">
+  <tr>
+    <th>Título</th>
+    <th>Curso</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+    <th>Prioridad</th>
+    <th>Acciones</th>
+  </tr>
+
+  <tr *ngFor="let t of tareas">
+    <td>{{ t.titulo }}</td>
+    <td>{{ t.curso }}</td>
+    <td>{{ t.fechaEntrega | date:'shortDate' }}</td>
+    <td>{{ t.estado }}</td>
+    <td>{{ t.prioridad }}</td>
+
+    <td>
+      <button (click)="eliminar(t.id!)">Eliminar</button>
+    </td>
+  </tr>
+</table>
