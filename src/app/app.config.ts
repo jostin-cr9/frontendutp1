@@ -1,11 +1,11 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { routes } from './app.routes';
+import { Inicio } from './pages/inicio/inicio';
+import { Tareas } from './pages/tareas/tareas';
+import { NuevaTarea } from './pages/nueva-tarea/nueva-tarea';
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
-  ]
-};
+export const routes: Routes = [
+  { path: '', component: Inicio},
+  { path: 'tareas', component: Tareas },
+  { path: 'nueva-tarea', component: NuevaTarea }
+];
