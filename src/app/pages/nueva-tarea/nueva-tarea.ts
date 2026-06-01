@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TareaService } from '../../services/tarea.service';
+import { CommonModule } from '@angular/common';
 import { Tarea } from '../../models/tarea';
 @Component({
   selector: 'app-nueva-tarea',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './nueva-tarea.html'
+    
 })
 export class NuevaTarea {
 
